@@ -4,14 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "server": "node --loader ts-node/esm RaspPiServer.ts --no-warnings",
-  "client": "vite --port 4000",
-  "dev": "concurrently \"npm run server\" \"npm run client\""
-},
-"dependencies": {
+    "server": "node --loader ts-node/esm RaspPiServer.ts --no-warnings",
+    "client": "vite --port 4000",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
     "@supabase/supabase-js": "^2.103.2",
     "bootstrap": "^5.3.8",
     "cors": "^2.8.6",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.7",
     "react": "^19.2.4",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.4",
