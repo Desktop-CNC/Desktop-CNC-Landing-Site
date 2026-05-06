@@ -1,6 +1,6 @@
 import { useState } from "react";
-import NavBar from "./NavBar";
-import { supabase } from '../utils/supabase';
+import NavBar from "./NavBar.js";
+import { supabase } from '../utils/supabase.js';
 
 interface Props {
     session: UserSession;
@@ -26,8 +26,10 @@ function AccountNavBar({ session, setSession}: Props) {
           ]}
           itemHrefs={[
             '/', 
-            '#getting-started',
-            '#user-guides'
+            '/#getting-started',
+            '/my-gcode',
+            '#user-guides',
+            
           ]}
           itemDropdowns={[3, 4]}
           dropdownContent={[

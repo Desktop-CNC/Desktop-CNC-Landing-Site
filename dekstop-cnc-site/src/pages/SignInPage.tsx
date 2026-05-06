@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { supabase } from '../utils/supabase';
-import { Container, Button, Form, Card } from 'react-bootstrap'; // Using your Bootstrap layout
+import { supabase } from '../utils/supabase.js';
+import { Container, Button, Form, Card } from 'react-bootstrap'; 
 
 function SignInPage() {
     const [email, setEmail] = useState('');
@@ -18,12 +18,14 @@ function SignInPage() {
     };
 
     return (
-        <Container className="mt-5" style={{ maxWidth: '400px' }}>
-            <Card className="p-4 shadow-sm">
-                <h3 className="mb-3">Sign In</h3>
+        <Container className="mt-5" style={{ width: '100%', height: '60%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Card className="p-4 shadow-sm" style={{ width: "25%", height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>
+                <img src="public/assets/account_icon.png" style={{opacity: 0.65, width: "8rem", margin: "1rem"}} alt="Account Icon"/>
+                <h3 className="mb-3">Sign In Below</h3>
+                <p>Sign in or register here.</p>
                 <Form onSubmit={handleLogin}>
                     <Form.Group className="mb-3">
-                        <Form.Label>Email address</Form.Label>
+                        <Form.Label><strong>Email address</strong></Form.Label>
                         <Form.Control 
                             type="email" 
                             placeholder="name@wpi.edu" 

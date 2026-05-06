@@ -1,19 +1,17 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ], 
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "bundler", 
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "strict": true
-  },
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
-  }
+    "files": [],
+    "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+    "compilerOptions": {
+        "paths": { "@/*": ["./src/*"] },
+        "target": "ESNext",
+        "module": "node16",
+        "moduleResolution": "node16",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "strict": true
+    },
+    "ts-node": {
+        "esm": true,
+        "experimentalSpecifierResolution": "node"
+    }
 }

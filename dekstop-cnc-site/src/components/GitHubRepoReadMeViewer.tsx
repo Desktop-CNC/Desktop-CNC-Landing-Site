@@ -153,7 +153,7 @@ export default function GitHubRepoReadMeViewer({ owner, repo, onHeadings }: Prop
                         const match = /language-(\w+)/.exec(className || "");
                         return !inline && match ? (
                             <SyntaxHighlighter
-                                style={"okaidia"}
+                                style={okaidia}
                                 language={match[1]}
                                 PreTag="div"
                                 customStyle={{

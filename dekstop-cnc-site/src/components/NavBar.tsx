@@ -1,9 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import './../App.css'
-import { supabase } from '../utils/supabase';
+import { supabase } from '../utils/supabase.js';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { useNavigate, Link, isSession} from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { useNavigate, Link} from 'react-router-dom';
 
 interface Props {
     items: string[];
@@ -42,15 +41,17 @@ function NavBar({ items, itemHrefs, itemDropdowns, dropdownContent, dropdownHref
     return (
         <>
             <Navbar expand="lg" 
+                    sticky='top'
                     style={{ 
                         background: 'linear-gradient(90deg, #34495e 0%, #1a252f 100%)',
-                        borderBottom: '1px solid rgba(0,0,0,0.1)' 
+                        borderBottom: '1px solid rgba(0,0,0,0.1)',
+                        position: 'sticky'
                     }}
                     className="py-2 shadow-lg"
                     data-bs-theme="dark">
 
                 <Container fluid className="px-4">
-                    {/*Show nav title*/}
+                    {/*show nav title*/}
                     <Navbar.Brand as={Link} to="/"
                         className="
                             fw-bold
@@ -70,7 +71,6 @@ function NavBar({ items, itemHrefs, itemDropdowns, dropdownContent, dropdownHref
                         </span>
                     </Navbar.Brand>
                     
-                    {/* List all items as nav items */}
                     <Nav className="flex-row gap-3">
                         {items.map((item, index) => {
                             const isDropdown = itemDropdowns.includes(index)
@@ -147,6 +147,9 @@ function NavBar({ items, itemHrefs, itemDropdowns, dropdownContent, dropdownHref
                         )}
                         <div className='ms-5'/>
                     </Nav>
+                    <span className="navbar-text opacity-75">
+                        {session ? `Signed in as ${session.user.email}` : "Not signed in"}
+                    </span>
                 </Container>
             </Navbar>
         </>
