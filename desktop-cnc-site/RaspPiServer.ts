@@ -12,22 +12,23 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.post('/launch-ugs', (req, res) => {
-  const scriptPath = path.resolve(__dirname, './web_launch_ugs.sh');
-  
-  // 'detached: true' let UGS live
-  const child = spawn('bash', [scriptPath], {
-    detached: true,
-    stdio: 'ignore',
-    env: { ...process.env } 
-  });
-
-  child.unref(); // disconnects the server from the process
-
-  console.log("UGS launch signal sent.");
-  res.json({ status: 'success' });
+    const scriptPath = path.resolve(__dirname, './web_launch_ugs.sh');
+    const child = spawn('bash', [scriptPath], { 
+        detached: true, 
+        stdio: 'ignore', 
+        env: { ...process.env } 
+    });
+    child.unref();
+    console.log("UGS launch signal sent.");
+    res.json({ status: 'success' });
 });
 
-const PORT = 5000;
-app.listen(PORT, () => console.log(`TS Bridge running on port ${PORT}`));
+app.use(express.static(path.join(__dirname, 'dist')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
-
+const PORT = Number(process.env.PORT) || 5000;
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
+});
