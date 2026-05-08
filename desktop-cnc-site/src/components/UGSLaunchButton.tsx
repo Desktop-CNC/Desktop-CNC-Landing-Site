@@ -22,13 +22,12 @@ const UGSLaunchButton: React.FC = () => {
   
   const [hover, setHover] = React.useState(false);
   const textStyle: React.CSSProperties = {
-    fontFamily: "'Goldman', display", // Apply Goldman here
-    fontSize: "1.6rem",               // Goldman runs a bit small, so 1.6rem works well
+    fontFamily: "'Goldman', display", 
+    fontSize: "1.6rem",               
     fontWeight: "700",
     color: "#4A4A4A",
     marginRight: "0.6rem",
     lineHeight: "1",
-    // We can likely remove scaleY now as Goldman is naturally tall
   };
 
 return (
