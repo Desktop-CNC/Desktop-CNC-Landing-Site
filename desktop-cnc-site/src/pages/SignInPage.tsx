@@ -7,17 +7,15 @@ function SignInPage() {
     const [loading, setLoading] = useState(false);
 
     // handle SSO 
-    const handleLogin = async () => {
-        const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: 'https://desktop-cnc-landing-site.onrender.com/dashboard'
-        }
-  });
-  
-  if (error) console.error("Login failed:", error.message);
-};
-
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        const { error } = await supabase.auth.signInWithOtp({ email });
+        
+        if (error) alert(error.message);
+        else alert('SSO verification was sent to email.');
+        setLoading(false);
+    };
 
     return (
         <Container className="mt-5" style={{ width: '100%', height: '60%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
