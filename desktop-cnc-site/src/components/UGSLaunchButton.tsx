@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 import { Button } from 'primereact/button';
-import PrimeReact from 'primereact/api';
 import { Ripple } from 'primereact/ripple';
-
-// btn ripple affect
-PrimeReact.ripple = true;
         
 const UGSLaunchButton: React.FC = () => {
-    const [loading, setLoading] = useState<boolean>(false);
+    const handleLaunch = async () => {
+     try {
+       // target 127.0.0.1 localhost 
+       const response = await fetch('http://127.0.0.1:5000/launch-ugs', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+       });
 
-    const handleLaunch = async (): Promise<void> => {
-        setLoading(true);
-        try {
-            const response = await fetch('http://localhost:5000/launch-ugs', { 
-            method: 'POST' 
-          });
-            if (!response.ok) throw new Error('Launch failed');
-        } catch (error) {} finally {
-            setLoading(false);
-        }
-  };
+       if (response.ok) {
+         alert("Signal sent to local listener!");
+       }
+     } catch (err) {
+       console.error("Local listener not found. Is your local server running?", err);
+       alert("Error: Ensure your local listener is booted manually.");
+     }
+    };
   
   const [hover, setHover] = React.useState(false);
   const textStyle: React.CSSProperties = {
