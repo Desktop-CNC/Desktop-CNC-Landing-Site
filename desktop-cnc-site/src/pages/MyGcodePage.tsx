@@ -8,6 +8,7 @@ import GcodePreviewer from '../components/GcodePreview.js';
 import FileUploader from '../components/FileUploader.js';
 import { supabase } from '../utils/supabase.js';
 
+import { Navigate, redirect, useNavigate } from 'react-router-dom';
 import '/src/App.css'
 import DivCard from '../components/DivCard.tsx';
 

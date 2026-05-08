@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from './utils/supabase.js';
 
 import AccountNavBar from './components/AccountNavBar.js';
+import { Navigate } from 'react-router-dom';
 
 import HomePage from './pages/HomePage.js'
 import SignInPage from './pages/SignInPage.js';
@@ -32,6 +33,7 @@ function App() {
           <AccountNavBar session={session} setSession={setSession}/>
           <main style={{ flex: 1 }}>
             <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" />} />
               <Route path="/dashboard" element={<HomePage/>}/>
               <Route path="/signin" element={<SignInPage/>}/>
               <Route path="/my-gcode" element={<MyGcodePage/>}/>
