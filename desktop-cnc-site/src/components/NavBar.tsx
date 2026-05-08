@@ -34,7 +34,7 @@ function NavBar({ items, itemHrefs, itemDropdowns, dropdownContent, dropdownHref
         } else {
           // clear the local state and go home
           setSession(null)
-          navigate('/')
+          navigate('/dashboard')
         }
     };
 

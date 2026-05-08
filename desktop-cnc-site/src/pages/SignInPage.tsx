@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase.js';
 import { Container, Button, Form, Card } from 'react-bootstrap'; 
+import { Navigate, redirect, useNavigate } from 'react-router-dom';
 
 function SignInPage() {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+
 
     // handle SSO 
     const handleLogin = async (e: React.FormEvent) => {
@@ -15,11 +18,25 @@ function SignInPage() {
         if (error) alert(error.message);
         else alert('SSO verification was sent to email.');
         setLoading(false);
+        return <Navigate to="/dashboard" />; 
     };
+
+    // check authentication status
+        useEffect(() => {
+            const checkSession = async () => {
+                const { data: { session } } = await supabase.auth.getSession();
+                setIsAuthenticated(!!session);
+            };
+            checkSession();
+        }, []);
+
+    if(isAuthenticated) {
+        return <Navigate to="/my-gcode" />;
+    }
 
     return (
         <Container className="mt-5" style={{ width: '100%', height: '60%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Card className="p-4 shadow-sm" style={{ width: "25%", height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>
+            <Card className="p-4 shadow-sm" style={{ width: "20rem", height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>
                 <img src="public/assets/account_icon.png" style={{opacity: 0.65, width: "8rem", margin: "1rem"}} alt="Account Icon"/>
                 <h3 className="mb-3">Sign In Below</h3>
                 <p>Sign in or register here.</p>

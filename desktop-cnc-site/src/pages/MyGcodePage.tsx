@@ -10,8 +10,6 @@ import { supabase } from '../utils/supabase.js';
 
 import '/src/App.css'
 import DivCard from '../components/DivCard.tsx';
-import SignInPage from './SignInPage.tsx';
-
 
 function MyGcodePage() {
     const [files, setFiles] = useState<any[]>([]);
@@ -117,13 +115,10 @@ function MyGcodePage() {
     if(isAuthenticated === null) {
         return <div>Loading...</div>;
     }
-
-    if(!isAuthenticated) {
-        return (
-            <SignInPage/>
-        );
+    else if(!isAuthenticated) {
+        return <Navigate to="/signin" />;
     }
-
+    
     return (
         <section className="section-alt p-4">
             
