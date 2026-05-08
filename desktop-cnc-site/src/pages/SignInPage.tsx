@@ -37,7 +37,7 @@ function SignInPage() {
     return (
         <Container className="mt-5" style={{ width: '100%', height: '60%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Card className="p-4 shadow-sm" style={{ width: "20rem", height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>
-                <img src="public/assets/account_icon.png" style={{opacity: 0.65, width: "8rem", margin: "1rem"}} alt="Account Icon"/>
+                <img src="/assets/account_icon.png" style={{opacity: 0.65, width: "8rem", margin: "1rem"}} alt="Account Icon"/>
                 <h3 className="mb-3">Sign In Below</h3>
                 <p>Sign in or register here.</p>
                 <Form onSubmit={handleLogin}>
