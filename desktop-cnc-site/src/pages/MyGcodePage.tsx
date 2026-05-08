@@ -116,9 +116,6 @@ function MyGcodePage() {
     if(isAuthenticated === null) {
         return <div>Loading...</div>;
     }
-    else if(!isAuthenticated) {
-        return <Navigate to="/signin" />;
-    }
     
     return (
         <section className="section-alt p-4">

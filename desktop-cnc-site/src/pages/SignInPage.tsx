@@ -18,7 +18,6 @@ function SignInPage() {
         if (error) alert(error.message);
         else alert('SSO verification was sent to email.');
         setLoading(false);
-        return <Navigate to="/dashboard" />; 
     };
 
     // check authentication status
@@ -29,10 +28,6 @@ function SignInPage() {
             };
             checkSession();
         }, []);
-
-    if(isAuthenticated) {
-        return <Navigate to="/my-gcode" />;
-    }
 
     return (
         <Container className="mt-5" style={{ width: '100%', height: '60%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
