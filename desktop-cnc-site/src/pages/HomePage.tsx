@@ -11,7 +11,6 @@ function HomePage() {
         }}>
             <div>
                 <UGSLaunchButton/>
-                <GitHubRepoReadMeViewer owner={"Desktop-CNC"} repo={"Desktop-CNC-WebDocumentation"} file={"/CAM_UserGuide.md"}/>
                 <Section title="Milling with Desktop CNC" variant="main" >
                     <div className="row align-items-center" id="#home">
                         <div className="col-md-8">

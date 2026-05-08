@@ -9,6 +9,7 @@ import { Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage.js'
 import SignInPage from './pages/SignInPage.js';
 import MyGcodePage from './pages/MyGcodePage.js';
+import GitHubRepoReadMeViewer from "./components/GitHubMDViewer.tsx";
 
 type UserSession = Awaited<ReturnType<typeof supabase.auth.getSession>>['data']['session'];
 
@@ -37,6 +38,7 @@ function App() {
               <Route path="/dashboard" element={<HomePage/>}/>
               <Route path="/signin" element={<SignInPage/>}/>
               <Route path="/my-gcode" element={<MyGcodePage/>}/>
+              <Route path="/cam-user-guide" element={<GitHubRepoReadMeViewer owner={"Desktop-CNC"} repo={"Desktop-CNC-WebDocumentation"} file={"/CAM_UserGuide.md"}/>}/>
             </Routes>
           </main>
         </BrowserRouter>

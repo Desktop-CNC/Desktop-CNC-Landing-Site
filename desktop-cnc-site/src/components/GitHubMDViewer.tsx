@@ -126,45 +126,6 @@ export default function GitHubRepoReadMeViewer({ owner, repo, file, onHeadings }
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      {headings.length > 0 && (
-        <div
-          style={{
-            position: "sticky",
-            top: "10dvh",
-            backgroundColor: "var(--accent-color, #eee)",
-            padding: "0.75rem 1.5dvw",
-            display: "flex",
-            overflowX: "auto",
-            whiteSpace: "nowrap",
-            borderRadius: "2em",
-            zIndex: 10,
-            width: "48dvw",
-            marginBottom: "1em",
-            scrollbarWidth: "none",
-          }}
-        >
-          {headings.map((h) => (
-            <a
-              key={h.id}
-              href={`#${h.id}`}
-              style={{
-                flex: "0 0 auto",
-                textDecoration: "none",
-                color: "var(--highlight-text-color, #333)",
-                padding: "0.5rem 1rem",
-                margin: "0 0.25rem",
-                borderRadius: "999px",
-                backgroundColor: "var(--secondary-color, #fff)",
-                boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-                fontSize: "0.85rem",
-              }}
-            >
-              {h.text}
-            </a>
-          ))}
-        </div>
-      )}
-
       <div
         style={{
           backgroundColor: "var(--secondary-color, #fff)",

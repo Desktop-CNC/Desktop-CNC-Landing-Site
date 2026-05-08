@@ -28,7 +28,7 @@ function AccountNavBar({ session, setSession}: Props) {
             '/', 
             '/#getting-started',
             '/my-gcode',
-            '#user-guides',
+            '/user-guides',
             
           ]}
           itemDropdowns={[3, 4]}
@@ -51,7 +51,7 @@ function AccountNavBar({ session, setSession}: Props) {
               '/'
             ],
             [
-              '/',
+              './cam-user-guide',
               '/',
               '/'
             ]
