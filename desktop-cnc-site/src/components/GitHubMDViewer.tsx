@@ -19,6 +19,10 @@ interface Props {
   onHeadings?: (headings: Heading[]) => void;
 }
 
+/**
+ * @brief This represents a styled text preview of a rendered github markdown file. A github repository can be specified by using 
+ * `owner` and `repo` arguments. The specific markdown file to render fro the repository is denoted by the `file` argument. 
+ */
 export default function GitHubRepoReadMeViewer({ owner, repo, file, onHeadings }: Props) {
   const [markdown, setMarkdown] = useState<string>("Loading README...");
   const [headings, setHeadings] = useState<Heading[]>([]);
@@ -36,6 +40,7 @@ export default function GitHubRepoReadMeViewer({ owner, repo, file, onHeadings }
         return text + String(child);
       }
       if (React.isValidElement(child)) {
+
         const element = child as React.ReactElement<any>;
         if (element.props.children) {
           return text + flattenText(element.props.children);

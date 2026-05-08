@@ -9,6 +9,10 @@ interface Props {
 
 type UserSession = Awaited<ReturnType<typeof supabase.auth.getSession>>['data']['session'];
 
+/**
+ * @brief Represents the website navigation bar. This implements the NavBar component and displays the user account that is currently logged in. This 
+ * NavBar implementation also outline the list of routes that the navbar can direct a user to.  
+ */
 function AccountNavBar({ session, setSession}: Props) {
 
     return (

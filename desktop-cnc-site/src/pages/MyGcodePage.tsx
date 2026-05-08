@@ -12,6 +12,9 @@ import '/src/App.css'
 import DivCard from '../components/DivCard.tsx';
 import { Navigate } from 'react-router-dom';
 
+/**
+ * @brief The website My GCode page. 
+ */
 function MyGcodePage() {
     const [files, setFiles] = useState<any[]>([]);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);

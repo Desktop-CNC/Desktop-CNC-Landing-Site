@@ -4,6 +4,9 @@ import UGSLaunchButton from "../components/UGSLaunchButton.js";
 import CarouselImages from "../components/CarouselImages.tsx";
 import '/src/App.css'
 
+/**
+ * @brief The website homepage. 
+ */
 function HomePage() {
     return (<>
         <CarouselImages owner="Desktop-CNC" repo="Desktop-CNC-WebDocumentation" root="assets/dashboard" 

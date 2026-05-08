@@ -7,7 +7,12 @@ import { ProgressBar } from 'react-bootstrap';
 interface FileUploadProps {
   onFilesUploaded: (files: File[]) => void;
 }
-    const FileUploader: React.FC<FileUploadProps> = ({ onFilesUploaded }) => {
+
+/**
+ * @brief Represents a file uploader. This component uses states for animating a progress bar. This component allows multiple files to be
+ * uploaded. Uploaded files are handled and in-take'd by a specified handler parameter `onFilesUploaded`.
+ */
+const FileUploader: React.FC<FileUploadProps> = ({ onFilesUploaded }) => {
       const [processedFilesCount, setProcessedFilesCount] = useState<number>(0);
       const [uploadProgress, setUploadProgress] = useState<number>(0);
 

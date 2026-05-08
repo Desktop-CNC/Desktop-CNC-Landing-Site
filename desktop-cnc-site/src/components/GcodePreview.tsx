@@ -5,6 +5,10 @@ interface GcodePreviewProps {
   url: string;
 }
 
+/**
+ * Represents a preview for G-Code files. This component will show a panel for scrolling through a readable render of the file content. 
+ * Additionally, this component will show a panel for a interactive 3D preview model of the G-Code itself. This preview can be rotated, panned, scrolled. 
+ */
 const GcodePreview: React.FC<GcodePreviewProps> = ({ url }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const previewRef = useRef<any>(null);

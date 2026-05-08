@@ -1,5 +1,8 @@
 import React from "react";
 
+/**
+ * @brief Represents a simply styled div card with styled shadows, coloring, and shadowing. This wraps website element content.
+ */
 function DivCard({ child }: { child: React.ReactNode }) {
     return (
         <div 

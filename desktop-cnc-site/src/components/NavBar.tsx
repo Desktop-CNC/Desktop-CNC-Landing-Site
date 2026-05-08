@@ -19,7 +19,7 @@ interface Props {
 type UserSession = Awaited<ReturnType<typeof supabase.auth.getSession>>['data']['session'];
 
 /**
- * @brief Main navbar format / styles
+ * @brief Represents a navigation bar that allows for drop-down tabs and Single-Sign On for user accounts.
  */
 function NavBar({ items, itemHrefs, itemDropdowns, dropdownContent, dropdownHrefs, brandFront, brandBack, session, setSession}: Props) {
     const navigate = useNavigate()

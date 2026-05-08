@@ -9,6 +9,12 @@ interface Props {
   files: string[]
 }
 
+/**
+ * @brief This represents a rotating carousel of images that can be display just below the website navbar. This component
+ * renders images from a directory on a public github repository; as outline by the `owner` and `repo` parameters. The `root`
+ * is a relative directory within the repository. `files` is the list of file names to render from that directory. This is a dynamic component
+ * that updates whenever the github repository content specified does. 
+ */
 function CarouselImages({owner, repo, root, files}: Props) {
   const [index, setIndex] = useState(0);
   const [imageUrls, setImageUrls] = useState<string[]>([]);

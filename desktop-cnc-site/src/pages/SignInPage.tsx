@@ -3,11 +3,13 @@ import { supabase } from '../utils/supabase.js';
 import { Container, Button, Form, Card } from 'react-bootstrap'; 
 import { Navigate, redirect, useNavigate } from 'react-router-dom';
 
+/**
+ * @brief The website signin page. 
+ */
 function SignInPage() {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-
 
     // handle SSO 
     const handleLogin = async (e: React.FormEvent) => {

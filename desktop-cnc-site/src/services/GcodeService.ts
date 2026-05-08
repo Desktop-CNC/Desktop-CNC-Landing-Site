@@ -1,9 +1,7 @@
 import { supabase } from '../utils/supabase.js';
 
 export const gcodeService = {
-    /**
-     * WRITE: Upload a file to the user's account.
-     */
+    /** WRITE: upload a file to the user's account. */
     async uploadGcode(file: File) {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) throw new Error("Authentication required");
@@ -21,9 +19,7 @@ export const gcodeService = {
         return data;
     },
 
-    /**
-     * READING: Fetch list of files in the user's account.
-     */
+    /** READING: Fetch list of files in the user's account. */
     async listMyGcode() {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) return [];
@@ -38,9 +34,7 @@ export const gcodeService = {
         return data; 
     },
 
-    /**
-     * DELETING: Removes file from user's account.
-     */
+    /** DELETING: Removes file from user's account. */
     async deleteGcode(fileName: string) {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) throw new Error("Authentication required");
@@ -51,14 +45,8 @@ export const gcodeService = {
 
         if (error) throw error;
     },
-
     
-
-
-   /**
-   * DOWNLOADING: retrieves the file as a Blob.
-   * Triggers the SELECT policy you created.
-   */
+   /** DOWNLOADING: Retrieves the file from user's account. */
   async downloadFile(fileName: string) {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) throw new Error("Not authenticated");
@@ -70,6 +58,6 @@ export const gcodeService = {
       .download(filePath);
 
     if (error) throw error;
-    return data; // This is a Blob
+    return data; 
   }
 };

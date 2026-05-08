@@ -11,7 +11,7 @@ import SignInPage from './pages/SignInPage.js';
 import MyGcodePage from './pages/MyGcodePage.js';
 import GitHubRepoReadMeViewer from "./components/GitHubMDViewer.tsx";
 import CarouselImages from "./components/CarouselImages.tsx";
-
+// user session instance for logged in supabase accounts
 type UserSession = Awaited<ReturnType<typeof supabase.auth.getSession>>['data']['session'];
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
 
     return (
       <div style={{display: "flex", flexDirection: "column", minHeight: "100dvh"}}>
-        <BrowserRouter>
+        <BrowserRouter> {/** handle web page routing */}
           <AccountNavBar session={session} setSession={setSession}/>
           <main style={{ flex: 1 }}>
             <Routes>
