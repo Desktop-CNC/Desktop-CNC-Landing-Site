@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage.js'
 import SignInPage from './pages/SignInPage.js';
 import MyGcodePage from './pages/MyGcodePage.js';
 import GitHubRepoReadMeViewer from "./components/GitHubMDViewer.tsx";
+import CarouselImages from "./components/CarouselImages.tsx";
 
 type UserSession = Awaited<ReturnType<typeof supabase.auth.getSession>>['data']['session'];
 
@@ -38,14 +39,21 @@ function App() {
               <Route path="/dashboard" element={<HomePage/>}/>
               <Route path="/signin" element={<SignInPage/>}/>
               <Route path="/my-gcode" element={<MyGcodePage/>}/>
-              <Route path="/cam-user-guide" element={<GitHubRepoReadMeViewer owner={"Desktop-CNC"} repo={"Desktop-CNC-WebDocumentation"} file={"/CAM_UserGuide.md"}/>}/>
+              <Route path="/cam-user-guide" element={<>
+                <CarouselImages owner="Desktop-CNC" repo="Desktop-CNC-WebDocumentation" root="assets/dashboard" 
+                  files={["A.JPG", "B.png", "C.png", "D.png", "E.png", "F.jpg", "G.jpg"]} />
+                  <br></br>
+                  <GitHubRepoReadMeViewer owner={"Desktop-CNC"} repo={"Desktop-CNC-WebDocumentation"} file={"/CAM_UserGuide.md"}/>
+                </>
+                }/>
             </Routes>
           </main>
         </BrowserRouter>
         
         <footer style={{marginBottom: "auto", height:"max-content"}}>
             <div className="container text-center" style={{height:"100%"}}>
-                <h3>2026 Desktop CNC | MME Teaching LAB | WPI</h3>
+                <h3>2026 Desktop CNC | MME Teaching Lab | WPI</h3>
+                <strong>Learn more </strong><a style={{color: "white"}} href="https://github.com/Desktop-CNC">here</a>
             </div>
         </footer>
       </div>

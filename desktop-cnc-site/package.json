@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-"scripts": {
+  "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
@@ -21,6 +21,7 @@
     "@untitledui/icons": "^0.0.22",
     "aws-amplify": "^6.16.4",
     "bootstrap": "^5.3.8",
+    "carousel": "^0.0.3",
     "cors": "^2.8.6",
     "gcode-preview": "^2.18.0",
     "motion": "^12.38.0",
