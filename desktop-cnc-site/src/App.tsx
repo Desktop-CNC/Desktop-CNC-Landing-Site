@@ -32,7 +32,7 @@ function App() {
           <AccountNavBar session={session} setSession={setSession}/>
           <main style={{ flex: 1 }}>
             <Routes>
-              <Route path="/" element={<HomePage/>}/>
+              <Route path="/dashboard" element={<HomePage/>}/>
               <Route path="/signin" element={<SignInPage/>}/>
               <Route path="/my-gcode" element={<MyGcodePage/>}/>
             </Routes>
