@@ -10,10 +10,6 @@ const UGSLaunchButton: React.FC = () => {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
        });
-
-       if (response.ok) {
-         alert("Signal sent to local listener!");
-       }
      } catch (err) {
        console.error("Local listener not found. Is your local server running?", err);
        alert("Error: Ensure your local listener is booted manually.");
