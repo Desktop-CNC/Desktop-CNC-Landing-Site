@@ -4,10 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "tsc && vite build",
-    "server": "node --loader ts-node/esm RaspPiServer.ts --no-warnings",
-    "client": "vite --port 3000",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "build": "tsc && vite build"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
