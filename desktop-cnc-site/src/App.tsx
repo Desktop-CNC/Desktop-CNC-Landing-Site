@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from './utils/supabase.js';
 
 import AccountNavBar from './components/AccountNavBar.js';
-import { Navigate } from 'react-router-dom';
+import { PrimeReactProvider } from 'primereact/api';
 
 import HomePage from './pages/HomePage.js'
 import SignInPage from './pages/SignInPage.js';
@@ -31,24 +31,25 @@ function App() {
 
     return (
       <div style={{display: "flex", flexDirection: "column", minHeight: "100dvh"}}>
-        <BrowserRouter> {/** handle web page routing */}
-          <AccountNavBar session={session} setSession={setSession}/>
-          <main style={{ flex: 1 }}>
-            <Routes>
-              <Route path="/" element={<Navigate to="/dashboard" />} />
-              <Route path="/dashboard" element={<HomePage/>}/>
-              <Route path="/signin" element={<SignInPage/>}/>
-              <Route path="/my-gcode" element={<MyGcodePage/>}/>
-              <Route path="/cam-user-guide" element={<>
-                <CarouselImages owner="Desktop-CNC" repo="Desktop-CNC-WebDocumentation" root="assets/dashboard" 
-                  files={["A.JPG", "B.png", "C.png", "D.png", "E.png", "F.jpg", "G.jpg"]} />
-                  <br></br>
-                  <GitHubRepoReadMeViewer owner={"Desktop-CNC"} repo={"Desktop-CNC-WebDocumentation"} file={"/CAM_UserGuide.md"}/>
-                </>
-                }/>
-            </Routes>
-          </main>
-        </BrowserRouter>
+        <PrimeReactProvider value={{ ripple: true }}>
+          <BrowserRouter> {/** handle web page routing */}
+            <AccountNavBar session={session} setSession={setSession}/>
+            <main style={{ flex: 1 }}>
+              <Routes>
+                <Route path="/" element={<HomePage/>} />
+                <Route path="/signin" element={<SignInPage/>}/>
+                <Route path="/my-gcode" element={<MyGcodePage/>}/>
+                <Route path="/cam-user-guide" element={<>
+                  <CarouselImages owner="Desktop-CNC" repo="Desktop-CNC-WebDocumentation" root="assets/dashboard" 
+                    files={["A.JPG", "B.png", "C.png", "D.png", "E.png", "F.jpg", "G.jpg"]} />
+                    <br></br>
+                    <GitHubRepoReadMeViewer owner={"Desktop-CNC"} repo={"Desktop-CNC-WebDocumentation"} file={"/CAM_UserGuide.md"}/>
+                  </>
+                  }/>
+              </Routes>
+            </main>
+          </BrowserRouter>
+        </PrimeReactProvider>
         
         <footer style={{marginBottom: "auto", height:"max-content"}}>
             <div className="container text-center" style={{height:"100%"}}>

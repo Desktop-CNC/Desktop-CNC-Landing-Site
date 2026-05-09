@@ -22,15 +22,29 @@ function MyGcodePage() {
     const [previewFileContent, setPreviewFileContent] = useState<string | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
-    // check authentication status
-    useEffect(() => {
-        const checkSession = async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            setIsAuthenticated(!!session);
-        };
-        checkSession();
-    }, []);
 
+    useEffect(() => {
+    // 1. Check initial session
+    const checkInitialSession = async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        setIsAuthenticated(!!session);
+    };
+    checkInitialSession();
+
+    // 2. Listen for the "Sign In" event that happens after the redirect
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+        console.log("Auth Event:", event); // This will show 'SIGNED_IN' when the link works
+        if (session) {
+            setIsAuthenticated(true);
+        } else {
+            setIsAuthenticated(false);
+        }
+    });
+
+    return () => {
+        subscription.unsubscribe();
+    };
+}, []);
 
     const refreshFiles = async () => {
         try {

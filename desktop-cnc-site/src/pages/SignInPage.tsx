@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase.js';
-import { Container, Button, Form, Card } from 'react-bootstrap'; 
+import { Container, Button, Form, Card, Nav } from 'react-bootstrap'; 
 import { Navigate, redirect, useNavigate } from 'react-router-dom';
 
 /**
@@ -10,6 +10,7 @@ function SignInPage() {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+    const navigate = useNavigate()
 
     // handle SSO 
     const handleLogin = async (e: React.FormEvent) => {
@@ -20,16 +21,21 @@ function SignInPage() {
         if (error) alert(error.message);
         else alert('SSO verification was sent to email.');
         setLoading(false);
+        navigate("/")
     };
 
     // check authentication status
-        useEffect(() => {
-            const checkSession = async () => {
-                const { data: { session } } = await supabase.auth.getSession();
-                setIsAuthenticated(!!session);
-            };
-            checkSession();
-        }, []);
+    useEffect(() => {
+        const checkSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            setIsAuthenticated(!!session);
+        };
+        checkSession();
+    }, []);
+
+    if(isAuthenticated) {
+        return <Navigate to="/" />
+    }
 
     return (
         <Container className="mt-5" style={{ width: '100%', height: '60%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -37,12 +43,12 @@ function SignInPage() {
                 <img src="/assets/account_icon.png" style={{opacity: 0.65, width: "8rem", margin: "1rem"}} alt="Account Icon"/>
                 <h3 className="mb-3">Sign In Below</h3>
                 <p>Sign in or register here.</p>
-                <Form onSubmit={handleLogin}>
+                <Form onSubmit={handleLogin} style={{}}>
                     <Form.Group className="mb-3">
                         <Form.Label><strong>Email address</strong></Form.Label>
                         <Form.Control 
                             type="email" 
-                            placeholder="name@wpi.edu" 
+                            placeholder="name@email.com" 
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -51,7 +57,9 @@ function SignInPage() {
                     <Button variant="primary" type="submit" className="w-100" disabled={loading}>
                         {loading ? 'Sending...' : 'Sign In'}
                     </Button>
+                    <p className="mb-3" style={{marginTop: "1rem", marginLeft: "1rem", color: "rgb(25,25,25)"}}>Disclaimer: May not work with professional/school emails! </p>
                 </Form>
+                
             </Card>
         </Container>
     );

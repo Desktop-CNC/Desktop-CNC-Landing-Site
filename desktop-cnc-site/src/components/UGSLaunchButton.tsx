@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'primereact/button';
 import { Ripple } from 'primereact/ripple';
-        
 /**
  * @brief Represents a button for launching UGS program. This button does not directly interface the client-side computer. This component 
  * sends a POST response for indirect interaction. Should the client-side be configured to use this button (accept the POST response) the UGS application will turn on. 
