@@ -12,16 +12,28 @@ function SignInPage() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
     const navigate = useNavigate()
 
-    // handle SSO 
+    // handle login
     const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
-        const { error } = await supabase.auth.signInWithOtp({ email });
-        
-        if (error) alert(error.message);
-        else alert('SSO verification was sent to email.');
-        setLoading(false);
-        navigate("/")
+      e.preventDefault();
+      setLoading(true);
+      const requestId = crypto.randomUUID();
+      // create login request in DB
+      await supabase.from("login_requests").insert({
+        id: requestId,
+        email,
+      });
+
+      // send email (Supabase OTP)
+      const { error } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: `https://https://desktop-cnc-landing-site.onrender.com/approve?request=${requestId}`,
+        },
+      });
+
+      if (error) alert(error.message);
+      setLoading(false);
+      navigate(`/waiting/${requestId}`);
     };
 
     // check authentication status
