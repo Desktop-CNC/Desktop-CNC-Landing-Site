@@ -17,24 +17,32 @@ function SignInPage() {
 
         const { error } = await supabase.auth.signInWithOtp({
             email,
+            options: {
+                shouldCreateUser: true,
+            }
         });
 
-        if (error) alert(error.message);
+        if (error) {
+            alert(error.message);
+        } else {
+            setStep("code"); // switch UI to code input
+        }
 
         setLoading(false);
-        setStep("code"); // switch UI to code input
     };
 
     // verify OTP code
     const handleVerify = async () => {
+        setLoading(true);
         const { error } = await supabase.auth.verifyOtp({
             email,
             token: code,
-            type: "email",
+            type: "magiclink", // Changed to "magiclink" to support the 8-digit PKCE token
         });
 
         if (error) {
-            alert("Invalid code");
+            alert(error.message);
+            setLoading(false);
             return;
         }
 
@@ -133,8 +141,18 @@ function SignInPage() {
                             variant="primary"
                             className="w-100"
                             onClick={handleVerify}
+                            disabled={loading}
                         >
-                            Verify Code
+                            {loading ? 'Verifying...' : 'Verify Code'}
+                        </Button>
+                        
+                        <Button 
+                            variant="link" 
+                            className="w-100 mt-2" 
+                            onClick={() => setStep("email")}
+                            style={{ fontSize: '0.8rem', color: '#6c757d' }}
+                        >
+                            Back to Email
                         </Button>
                     </div>
                 )}
