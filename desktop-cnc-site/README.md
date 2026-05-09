@@ -1,73 +1,22 @@
-# React + TypeScript + Vite
+# Desktop CNC Website 
+Author: Matthew Papesh
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1.0 Overview 
+This project is the main landing page and website for the Desktop CNC organization at WPI-MME. This website supports Desktop CNC documentation and user guide materials. Additionally, this website hosts a G-Code cloud storage service and client-side Universal Gcode Sender (UGS) interaction. UGS can be launched from the client-side when visiting the website if the client computer is configured correctly. Despite this special configuration, all other website resources function without it. 
 
-Currently, two official plugins are available:
+**The website can be found here: https://desktop-cnc-landing-site.onrender.com**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 2.0 Configure UGS-Client 
+UGS-Client setup is used to allow your computer to listen to the website for when the UGS launch is triggered bu the home page launch button. This can be configured by simply running the `RaspPiServer.js` server on your client. This client-side server will listen to the website for a launch signal, and it will launch UGS accordingly.
 
-## React Compiler
+If you wish to not manually run the client-side server everytime you boot up your computer, `RaspPiServer.js` can be run by running `init_main_client.sh`. This shell script can be added to your computer's programs to run at start-up. On Linux, this can be done by calling the initializer shell script from the `~/.profile` file. 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Without the client-side server running, UGS will not be able to boot up since the website never actually has access to your computer. (For security reasons)
+Additionally, the `https://github.com/Desktop-CNC/Desktop-CNC-Universal-G-Code-Sender` repository must be cloned to `~/Documents/GitHub` for UGS to be found. **Most clients do not need this functionality. But for those that do, this repository must be clone and the initializer script must be called.**
 
-## Expanding the ESLint configuration
+## 3.0 Website Documentation 
+Documentation is stored in the Desktop CNC WebDocumentation repository [here](https://github.com/Desktop-CNC/Desktop-CNC-WebDocumentation).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+User guides and other documentation is rendered from the WebDocumentation repository. This is so that docs can easily be maintained separate of the website.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```

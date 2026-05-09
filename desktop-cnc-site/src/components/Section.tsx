@@ -9,6 +9,9 @@ interface Props {
     variant?: 'main' | 'alt';
 }
 
+/**
+ * @brief Represents a styled section.
+ */
 function Section({ title, children, variant = 'main' }: Props) {
     const sectionClass = variant === 'alt' ? 'section-alt' : 'section-main';
     const anchorId = title.toLowerCase().replace(/\s+/g, '-') + '-title';

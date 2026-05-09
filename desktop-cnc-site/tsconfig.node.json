@@ -20,5 +20,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts", "RaspPiServer.ts"]
+  "include": ["vite.config.ts", "RaspPiServer.js"]
 }
