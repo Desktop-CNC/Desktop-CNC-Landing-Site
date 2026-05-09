@@ -123,7 +123,7 @@ function SignInPage() {
                             <Form.Label><strong>Enter Code</strong></Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="6-digit code"
+                                placeholder="8-digit code"
                                 value={code}
                                 onChange={(e) => setCode(e.target.value)}
                             />
