@@ -37,7 +37,7 @@ function SignInPage() {
         const { error } = await supabase.auth.verifyOtp({
             email,
             token: code,
-            type: "magiclink", // Changed to "magiclink" to support the 8-digit PKCE token
+            type: "magiclink",
         });
 
         if (error) {

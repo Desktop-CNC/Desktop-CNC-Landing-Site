@@ -6,7 +6,6 @@ import { supabase } from './utils/supabase.js';
 import AccountNavBar from './components/AccountNavBar.js';
 import { PrimeReactProvider } from 'primereact/api';
 
-import VerifyPage from './pages/VerifyPage.tsx'
 import HomePage from './pages/HomePage.js'
 import SignInPage from './pages/SignInPage.js';
 import MyGcodePage from './pages/MyGcodePage.js';
@@ -38,7 +37,6 @@ function App() {
             <main style={{ flex: 1 }}>
               <Routes>
                 <Route path="/" element={<HomePage/>} />
-                <Route path="/approve" element={<VerifyPage />} />
                 <Route path="/signin" element={<SignInPage/>}/>
                 <Route path="/my-gcode" element={<MyGcodePage/>}/>
                 <Route path="/cam-user-guide" element={<>
