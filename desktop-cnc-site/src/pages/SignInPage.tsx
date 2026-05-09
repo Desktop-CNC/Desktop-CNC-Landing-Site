@@ -27,7 +27,7 @@ function SignInPage() {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `https://https://desktop-cnc-landing-site.onrender.com/approve?request=${requestId}`,
+          emailRedirectTo: `https://desktop-cnc-landing-site.onrender.com/approve?request=${requestId}`,
         },
       });
 
